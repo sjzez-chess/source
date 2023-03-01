@@ -17,30 +17,31 @@ void Floyd()
 
 int main()
 {
-    cin >> n >> m >> Q;
+    cin >> n >> m;
 
     for (int i = 1; i <= n; i ++ )
         for (int j = 1; j <= n; j ++ )
+        {
             if (i == j) d[i][j] = 0;
             else d[i][j] = INF;
- 
+        }
+
     while (m -- )
     {
         int a, b, w;
         cin >> a >> b >> w;
-        
-        d[a][b] = min(d[a][b], w);
+        d[a][b] = d[b][a] = w;
     }
 
     Floyd();
 
-    while (Q -- )
+    for (int i = 1; i <= n; i ++ )
     {
-        int a, b;
-        cin >> a >> b;
-
-        if (d[a][b] > INF / 2) cout << "impossible" << endl;
-        else cout << d[a][b] << endl;
+        for (int j = 1; j <= n;j ++ )
+        {
+            cout << d[i][j] << " ";
+        }
+        cout << endl;
     }
 
     return 0;

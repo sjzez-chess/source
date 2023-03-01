@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const long long Max_n = 100010;
+const long long Max_n = 1000010;
 
 int a[Max_n + 2];
 
@@ -10,9 +10,9 @@ struct tree
 {
     int l, r;
     long long pre, add;
-}t[4 * maxn + 5]; // 叶子节点的个数最多为2^logn， 那二叉树节点个数为 2 ^ (logn + 1) - 1 <= 4 * n
+}t[4 * Max_n + 5];
 
-void build(int p, int l, int r) // 建树 
+void build(int p, int l, int r) 
 {
     t[p].l = l;
     t[p].r = r;
@@ -24,11 +24,10 @@ void build(int p, int l, int r) // 建树
     int mid = l + r >> 1;
     build( p * 2, l, mid);
     build( p * 2 + 1, mid + 1, r);
-    t[p].pre = t[p * 2].pre + t[p * 2 + 1].pre; //合并区间答案 
+    t[p].pre = t[p * 2].pre + t[p * 2 + 1].pre;  
 }
 
-void spread(int p) // 懒标记 ;
-// 爷爷给孙子压岁钱，先给了爸爸，爸爸懒不给孙子，爷爷问爸爸或者孙子找爸爸要的时候，爸爸才还给孙子 
+void spread(int p) 
 {
     if (t[p].add)
     {
@@ -95,13 +94,13 @@ int main()
         cin >> q;
         if(q == 1)
         {
-            cin >> x >> y >> z;
-            change(1, x, y, z);
+            cin >> x >> z;
+            change(1, x, x, z);
         }
         else
         {
             cin >> x >> y;
-            cout << ask(1, x, y) << endl;;
+            cout << ask(1, x, y) << endl;
         }
     }
     

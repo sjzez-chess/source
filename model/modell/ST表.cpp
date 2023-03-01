@@ -35,15 +35,13 @@ int main()
 {
 	n = read();
 	for (int i = 1; i <= n; i ++ ) w[i] = read();	
-	
 	init();
-	
 	m = read();
 	while (m -- )
 	{
 		int l, r;
 		l = read(), r = read(); 
-		cout << query(l, r);
+		cout << query(l, r) << endl;
 	}
 	
 	return 0;
